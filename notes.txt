@@ -1,0 +1,24 @@
+Build Actions (on commit and merge)
+-   Android
+    -   Build apk (with incremented version number)
+        -   upload apk to firebase TestLab
+            _   Perform Test on Multiple devices
+                -   Execute robo test.
+                -   Execute custom test cases.
+                -   Take screenshots
+
+            -   Send feedback to Build Action.
+                - If all Test Pass build app bundle.
+                    - upload to playstore Staging area
+
+-   IOS
+    -   Build ipa (with incremented version number)
+        -   upload ipa to firebase TestLab
+            _   Perform Test on Multiple devices
+                -   Execute robo test.
+                -   Execute custom test cases.
+                -   Take screenshots
+
+            -   Send feedback to Build Action.
+                - If all Test Pass build ipa.
+                    - upload to appstoreconnect TestFlight
