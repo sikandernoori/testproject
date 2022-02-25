@@ -23,7 +23,7 @@ jobs:
       - run: flutter --version
       - run: flutter pub get
       - run: flutter test
-      - run: flutter build apk
+      - run: flutter build apk --debug
       # Upload apk
       - name: Upload app APK
         uses: actions/upload-artifact@v1
