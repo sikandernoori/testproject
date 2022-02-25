@@ -54,7 +54,7 @@ jobs:
           service_account_key: ${{ secrets.SERVICE_ACCOUNT }}
 
       - name: Run Instrumentation Tests in Firebase Test Lab
-        run: gcloud firebase test android run --type instrumentation --app app-debug/app-debug.apk
+        run: gcloud firebase test android run --type instrumentation --app app-debug/app-debug.apk --test app-debug/app-debug.apk
       # Comment app bundle and ios now for fast testing 
       # - run: flutter build appbundle
       # - run: |
