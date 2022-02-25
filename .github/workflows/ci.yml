@@ -46,11 +46,6 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: app-debug
-      
-      - id: 'auth'
-        uses: 'google-github-actions/auth@v0'
-        with:
-          credentials_json: '${{ secrets.GCLOUD_AUTH }}'
 
       - name: Login to Google Cloud
         uses: google-github-actions/setup-gcloud@v0
