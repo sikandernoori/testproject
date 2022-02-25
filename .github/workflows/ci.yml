@@ -41,11 +41,6 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: app-debug
-
-      - name: Download Android test APK
-        uses: actions/download-artifact@v1
-        with:
-          name: app-debug
       
       - name: 'Auth Google CLI'
         uses: 'google-github-actions/auth@v0'
@@ -58,11 +53,8 @@ jobs:
           version: '270.0.0'
           service_account_key: ${{ secrets.SERVICE_ACCOUNT }}
 
-      - name: Set current project
-        run: gcloud config set project takeover-light
-
       - name: Run Instrumentation Tests in Firebase Test Lab
-        run: gcloud firebase test android run --type instrumentation --app app-debug/app-debug.apk --test app-debug-androidTest/app-debug-androidTest.apk --device model=Pixel2,version=28,locale=pl,orientation=portrait
+        run: gcloud firebase test android run --type instrumentation --app app-debug/app-debug.apk
       # Comment app bundle and ios now for fast testing
       # - run: flutter build appbundle
       # - run: |
