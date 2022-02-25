@@ -1,4 +1,4 @@
-name: "Build, Test & Release"
+name: "Test, Build, TestLab & Release"
 on:
   pull_request:
     branches:
@@ -8,7 +8,7 @@ on:
       - main
 jobs:
   build:
-    name: Build
+    name: Test, Build, TestLab & Release
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,24 +24,24 @@ jobs:
       - run: flutter pub get
       - run: flutter test
       - run: flutter build apk
-      - run: flutter build appbundle
-      - run: flutter build ios --no-codesign
-  test:
-    name: unit test
-    runs-on: macos-latest
-    needs: build
-    steps:
-      - run: flutter test
-
-
-
-
+      # Run the Firebase Test Lab Action
+      - name: Run tests on Firebase Test Lab
+        uses: asadmansr/Firebase-Test-Lab-Action@v1.0
+        with:
+          arg-spec: 'testlab.yml:android-pixel-4'
+        env:
+          SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
+      # Comment app bundle and ios now for fast testing
+      # - run: flutter build appbundle
+      # - run: |
+      #     flutter build ios --no-codesign
       #     cd build/ios/iphoneos
       #     mkdir Payload
       #     cd Payload
       #     ln -s ../Runner.app
       #     cd ..
       #     zip -r app.ipa Payload
+      # use this when all steps passed
       # - name: Push to Releases
       #   uses: ncipollo/release-action@v1
       #   with:
@@ -50,6 +50,9 @@ jobs:
       #     token: ${{ secrets.TOKEN }}
 
 
+
+
+
+
 # push to master, main, develop
 # pull request on main master
-
