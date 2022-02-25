@@ -55,7 +55,7 @@ jobs:
 
       - name: Run Instrumentation Tests in Firebase Test Lab
         run: gcloud firebase test android run --type instrumentation --app app-debug/app-debug.apk
-      # Comment app bundle and ios now for fast testing
+      # Comment app bundle and ios now for fast testing 
       # - run: flutter build appbundle
       # - run: |
       #     flutter build ios --no-codesign
