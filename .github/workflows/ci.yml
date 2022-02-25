@@ -29,6 +29,7 @@ jobs:
   test:
     name: unit test
     runs-on: macos-latest
+    needs: build
     steps:
       - run: flutter test
 
