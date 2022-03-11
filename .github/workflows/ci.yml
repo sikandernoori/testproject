@@ -2,10 +2,10 @@ name: "Test, Build, TestLab & Release"
 on:
   pull_request:
     branches:
-      - master
+      - main
   push:
     branches:
-      - master
+      - main
 jobs:
   build-android:
     name: Test, Build & upload apk
