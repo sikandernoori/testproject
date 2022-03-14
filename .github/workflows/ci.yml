@@ -137,4 +137,3 @@ jobs:
             SLACK_USERNAME: Production release
             SLACK_COLOR: ${{ job.status }}
             SLACK_ICON: https://uploads-ssl.webflow.com/5f91a13d2fffdc408d6370ed/5f91a13d2fffdc6b26637106_randomforest-logo.svg
-            
