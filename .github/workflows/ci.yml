@@ -90,53 +90,53 @@ jobs:
       - name: Run Robo Tests in Firebase Test Lab
         # run: gcloud firebase test android run --type robo --app app-release-apk/app-release.apk
         run: gcloud firebase test android run --type robo --app build/app/outputs/apk/release/RF_TP_V1.0.0-release.apk
-  deploy-TestFlight:
-    name: 'Upload app to TestFlight'
-    needs: [testlab, build-ios]
-    runs-on: macos-latest
+  # deploy-TestFlight:
+  #   name: 'Upload app to TestFlight'
+  #   needs: [testlab, build-ios]
+  #   runs-on: macos-latest
 
-    steps:
-      - name: Download ipa from artifacts
-        uses: actions/download-artifact@v1
-        with:
-          name: app-release-ipa
-      - uses: apple-actions/upload-testflight-build@v1
-        with: 
-          app-path: 'app-release-ipa/app.ipa' 
-          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
-          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
-          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
-  release:
-    name: release
-    needs: deploy-TestFlight
-    runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Download ipa from artifacts
+  #       uses: actions/download-artifact@v1
+  #       with:
+  #         name: app-release-ipa
+  #     - uses: apple-actions/upload-testflight-build@v1
+  #       with: 
+  #         app-path: 'app-release-ipa/app.ipa' 
+  #         issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+  #         api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+  #         api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+  # release:
+  #   name: release
+  #   needs: deploy-TestFlight
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Download apk from artifacts
-        uses: actions/download-artifact@v1
-        with:
-          name: app-release-apk
-      - name: Download ipa from artifacts
-        uses: actions/download-artifact@v1
-        with:
-          name: app-release-ipa
-      - name: Push to Releases
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "app-release-apk/app-release.apk,app-release-ipa/app.ipa"
-          tag: v1.0.${{ github.run_number }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-  slackNotification:
-        name: Slack Notification
-        needs: release
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v2
-        - name: Slack Notification
-          uses: rtCamp/action-slack-notify@v2
-          env:
-            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-            SLACK_USERNAME: Production release
-            SLACK_COLOR: ${{ job.status }}
-            SLACK_ICON: https://uploads-ssl.webflow.com/5f91a13d2fffdc408d6370ed/5f91a13d2fffdc6b26637106_randomforest-logo.svg
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Download apk from artifacts
+  #       uses: actions/download-artifact@v1
+  #       with:
+  #         name: app-release-apk
+  #     - name: Download ipa from artifacts
+  #       uses: actions/download-artifact@v1
+  #       with:
+  #         name: app-release-ipa
+  #     - name: Push to Releases
+  #       uses: ncipollo/release-action@v1
+  #       with:
+  #         artifacts: "app-release-apk/app-release.apk,app-release-ipa/app.ipa"
+  #         tag: v1.0.${{ github.run_number }}
+  #         token: ${{ secrets.GITHUB_TOKEN }}
+  # slackNotification:
+  #       name: Slack Notification
+  #       needs: release
+  #       runs-on: ubuntu-latest
+  #       steps:
+  #       - uses: actions/checkout@v2
+  #       - name: Slack Notification
+  #         uses: rtCamp/action-slack-notify@v2
+  #         env:
+  #           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+  #           SLACK_USERNAME: Production release
+  #           SLACK_COLOR: ${{ job.status }}
+  #           SLACK_ICON: https://uploads-ssl.webflow.com/5f91a13d2fffdc408d6370ed/5f91a13d2fffdc6b26637106_randomforest-logo.svg
