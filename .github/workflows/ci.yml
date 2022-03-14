@@ -84,6 +84,8 @@ jobs:
       #   with:
       #     version: '270.0.0'
       #     service_account_key: ${{ secrets.GCP_FIREBASE_CEREDENTIALS }}
+      - name: list available devices
+        run: gcloud firebase test android models list
 
       - name: Run Robo Tests in Firebase Test Lab
         # run: gcloud firebase test android run --type robo --app app-release-apk/app-release.apk
