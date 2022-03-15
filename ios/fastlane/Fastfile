@@ -1,4 +1,4 @@
-# Replace evverything in Fastfile with below code
+# Replace evverything in Fastfile with below cod
 default_platform(:ios)
 APPLICATON_ID = ENV["APPLICATON_ID"]
 BUNDLE_IDENTIFIER = ENV["BUNDLE_IDENTIFIER"]
