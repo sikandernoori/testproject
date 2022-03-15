@@ -1,17 +1,17 @@
-# name: "Test, Build, TestLab & Release"
-# on:
-#   pull_request:
-#     branches:
-#       - main
-#   push:
-#     branches:
-#       - main
-# jobs:
-#   # build-android:
-#   #   name: Test, Build & upload apk
-#   #   runs-on: ubuntu-latest
-#   #   steps:
-#   #     - uses: actions/checkout@v2
+name: "Test, Build, TestLab & Release"
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+jobs:
+  build-android:
+    name: Test, Build & upload apk
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 #   #     - uses: actions/setup-java@v2
 #   #       with:
 #   #         distribution: 'temurin'
