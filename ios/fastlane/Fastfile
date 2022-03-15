@@ -12,8 +12,8 @@ def delete_temp_keychain(name)
 end
 def create_temp_keychain(name, password)
   create_keychain(
-    name: name,
-    password: password,
+    name: "HelloWorld",
+    password: "HelloWorld",
     unlock: false,
     timeout: false
   )
