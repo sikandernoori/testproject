@@ -16,14 +16,14 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
-      - name: Run Flutter tasks
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '2.10.1'
-          channel: 'stable'
-      - run: flutter clean
-      - run: flutter pub get
-      - run: flutter build ios --release --no-codesign
+      # - name: Run Flutter tasks
+      #   uses: subosito/flutter-action@v2
+      #   with:
+      #     flutter-version: '2.10.1'
+      #     channel: 'stable'
+      # - run: flutter clean
+      # - run: flutter pub get
+      # - run: flutter build ios --release --no-codesign
       - name: Deploy iOS Beta to TestFlight via Fastlane
         uses: maierj/fastlane-action@v1.4.0
         with:
