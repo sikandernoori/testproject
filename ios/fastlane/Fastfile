@@ -1,4 +1,4 @@
-# Replace evverything in Fastfile with below cod
+# Replace evverything in Fastfile with below
 default_platform(:ios)
 APPLICATON_ID = ENV["APPLICATON_ID"]
 BUNDLE_IDENTIFIER = ENV["BUNDLE_IDENTIFIER"]
@@ -15,7 +15,7 @@ def create_temp_keychain(name, password)
     name: "HelloWorld",
     password: "HelloWorld",
     unlock: false,
-    timeout: false
+    timeout: 0
   )
 end
 def ensure_temp_keychain(name, password)
