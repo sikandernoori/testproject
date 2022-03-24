@@ -38,36 +38,36 @@ jobs:
       - name: upload video to artifacts 
         uses: actions/upload-artifact@v1
         with:
-          name: video & Screenshots
+          name: Video 
           path: ./results/video.mp4
 
       - name: upload Screenshots to artifacts 
         uses: actions/upload-artifact@v1
         with:
-          name: video & Screenshots
+          name: Screenshots
           path: ./results/artifacts/
 
-#   release:
-#     name: release
-#     needs: deploy-TestFlight
-#     runs-on: ubuntu-latest
+  release:
+    name: release
+    needs: deploy-TestFlight
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: Download apk from artifacts
-#         uses: actions/download-artifact@v1
-#         with:
-#           name: app-release-apk
-#       - name: Download ipa from artifacts
-#         uses: actions/download-artifact@v1
-#         with:
-#           name: app-release-ipa
-#       - name: Push to Releases
-#         uses: ncipollo/release-action@v1
-#         with:
-#           artifacts: "app-release-apk/app-release.apk,app-release-ipa/app.ipa"
-#           tag: v1.0.${{ github.run_number }}
-#           token: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download video
+        uses: actions/download-artifact@v1
+        with:
+          name: Video
+      - name: Download screenshots
+        uses: actions/download-artifact@v1
+        with:
+          name: Screenshots
+      - name: Push to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "./results/video.mp4, ./results/artifacts/*.png"
+          tag: v1.0.${{ github.run_number }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 #   slackNotification:
 #         name: Slack Notification
 #         needs: release
