@@ -40,8 +40,8 @@ jobs:
         with:
           name: video & Screenshots
           path: |
-           './results/video.mp4'
-           './results/artifacts/'
+           '/results/video.mp4'
+           '/results/artifacts/'
 
 #   release:
 #     name: release
