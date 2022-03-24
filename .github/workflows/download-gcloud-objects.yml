@@ -62,12 +62,12 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: Screenshots
-      - name: list
-        run: ls
+      - name: Zip Screenshots
+        run: zip -r Screenshots Screenshots
       - name: Push to Releases
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "Video/video.mp4, Screenshots/*.png"
+          artifacts: "Video/video.mp4, Screenshots.zip"
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.GITHUB_TOKEN }}
 #   slackNotification:
