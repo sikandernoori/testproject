@@ -17,8 +17,13 @@ jobs:
         uses: 'google-github-actions/auth@v0'
         with:
           credentials_json: '${{ secrets.GCP_FIREBASE_CEREDENTIALS }}'
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
 
-      - name: Run Robo Tests in Firebase Test Lab
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
+
+      - name: Download objects
         run: gsutil cp gs://test-lab-rudjzf4u316ku-kwtk2k67aqh04/video.mp4 ./
 
 #   release:
