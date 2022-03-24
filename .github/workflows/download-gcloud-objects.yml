@@ -9,7 +9,6 @@ on:
 jobs:
   testlab:
     name: Run UI tests with Firebase Test Lab
-    needs: build-android
     runs-on: ubuntu-latest
 
     steps:
