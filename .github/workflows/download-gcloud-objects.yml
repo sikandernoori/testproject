@@ -8,10 +8,11 @@ on:
       - main
 jobs:
   testlab:
-    name: Run UI tests with Firebase Test Lab
+    name: Download objects from Google Cloud Bucket
     runs-on: ubuntu-latest
 
-    steps:      
+    steps:
+      - uses: actions/checkout@v2
       - name: 'Auth Google CLI'
         uses: 'google-github-actions/auth@v0'
         with:
