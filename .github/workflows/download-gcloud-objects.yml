@@ -26,6 +26,12 @@ jobs:
       - name: Download objects
         run: gsutil cp gs://test-lab-9d3i0124xy3ac-jwzdcv41h0hr8/2022-03-14_22:28:25.274442_PliZ/blueline-28-en-portrait/video.mp4 ./
 
+      - name: upload video to artifacts 
+        uses: actions/upload-artifact@v1
+        with:
+          name: video
+          path: './video.mp4'
+
 #   release:
 #     name: release
 #     needs: deploy-TestFlight
