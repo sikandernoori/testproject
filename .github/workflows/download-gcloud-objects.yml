@@ -24,7 +24,7 @@ jobs:
         run: 'gcloud info'
 
       - name: Run Robo Tests in Firebase Test Lab
-        run: gcloud firebase test android run --type robo --app build/app/outputs/flutter-apk/app-release.apk --results-dir=${{ github.run_number }}
+        run: gcloud firebase test android run --type robo --app build/app/outputs/flutter-apk/app-release.apk --results-dir=${{ github.run_number }} --timeout=300s
 
       - name: Download video
         run: gsutil cp gs://test-lab-9d3i0124xy3ac-jwzdcv41h0hr8/${{ github.run_number }}/blueline-28-en-portrait/video.mp4 ./results
