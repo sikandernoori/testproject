@@ -11,13 +11,7 @@ jobs:
     name: Run UI tests with Firebase Test Lab
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Download app APK
-        uses: actions/download-artifact@v1
-        with:
-          name: app-release-apk
-      
+    steps:      
       - name: 'Auth Google CLI'
         uses: 'google-github-actions/auth@v0'
         with:
