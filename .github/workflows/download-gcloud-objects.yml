@@ -1,0 +1,63 @@
+name: "Test, Build, TestLab & Release"
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+jobs:
+  testlab:
+    name: Run UI tests with Firebase Test Lab
+    needs: build-android
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download app APK
+        uses: actions/download-artifact@v1
+        with:
+          name: app-release-apk
+      
+      - name: 'Auth Google CLI'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GCP_FIREBASE_CEREDENTIALS }}'
+
+      - name: Run Robo Tests in Firebase Test Lab
+        run: gsutil cp gs://test-lab-rudjzf4u316ku-kwtk2k67aqh04/video.mp4 ./
+
+#   release:
+#     name: release
+#     needs: deploy-TestFlight
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Download apk from artifacts
+#         uses: actions/download-artifact@v1
+#         with:
+#           name: app-release-apk
+#       - name: Download ipa from artifacts
+#         uses: actions/download-artifact@v1
+#         with:
+#           name: app-release-ipa
+#       - name: Push to Releases
+#         uses: ncipollo/release-action@v1
+#         with:
+#           artifacts: "app-release-apk/app-release.apk,app-release-ipa/app.ipa"
+#           tag: v1.0.${{ github.run_number }}
+#           token: ${{ secrets.GITHUB_TOKEN }}
+#   slackNotification:
+#         name: Slack Notification
+#         needs: release
+#         runs-on: ubuntu-latest
+#         steps:
+#         - uses: actions/checkout@v2
+#         - name: Slack Notification
+#           uses: rtCamp/action-slack-notify@v2
+#           env:
+#             SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+#             SLACK_USERNAME: Production release
+#             SLACK_COLOR: ${{ job.status }}
+#             SLACK_ICON: https://uploads-ssl.webflow.com/5f91a13d2fffdc408d6370ed/5f91a13d2fffdc6b26637106_randomforest-logo.svg
