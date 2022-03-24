@@ -24,16 +24,21 @@ jobs:
         run: 'gcloud info'
 
       - name: Run Robo Tests in Firebase Test Lab
-        run: gcloud firebase test android run --type robo --app build/app/outputs/flutter-apk/app-release.apk --results-dir=./results
+        run: gcloud firebase test android run --type robo --app build/app/outputs/flutter-apk/app-release.apk --results-dir=${{ github.run_number }}
 
-      # - name: Download objects
-      #   run: gsutil cp gs://test-lab-9d3i0124xy3ac-jwzdcv41h0hr8/2022-03-14_22:28:25.274442_PliZ/blueline-28-en-portrait/video.mp4 ./
+      - name: Download video
+        run: gsutil cp gs://test-lab-9d3i0124xy3ac-jwzdcv41h0hr8/${{ github.run_number }}/blueline-28-en-portrait/video.mp4 ./results
 
-      - name: upload video to artifacts 
+      - name: Download Screenshots
+        run: gsutil cp gs://test-lab-9d3i0124xy3ac-jwzdcv41h0hr8/${{ github.run_number }}/blueline-28-en-portrait/artifacts ./results
+
+      - name: upload video & Screenshots to artifacts 
         uses: actions/upload-artifact@v1
         with:
-          name: video
-          path: './video.mp4'
+          name: video & Screenshots
+          path: |
+           './results/video.mp4'
+           './results/artifacts/'
 
 #   release:
 #     name: release
