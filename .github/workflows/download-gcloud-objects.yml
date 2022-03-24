@@ -49,7 +49,7 @@ jobs:
 
   release:
     name: release
-    needs: deploy-TestFlight
+    needs: testlab
     runs-on: ubuntu-latest
 
     steps:
