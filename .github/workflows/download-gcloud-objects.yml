@@ -39,9 +39,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: video & Screenshots
-          path: |
-            ./results/video.mp4
-            ./results/artifacts/
+          path: ./results/video.mp4
 
 #   release:
 #     name: release
