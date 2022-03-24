@@ -30,7 +30,7 @@ jobs:
         run: gsutil cp gs://test-lab-9d3i0124xy3ac-jwzdcv41h0hr8/11/blueline-28-en-portrait/video.mp4 ./results
 
       - name: Download Screenshots
-        run: gsutil cp -r gs://test-lab-9d3i0124xy3ac-jwzdcv41h0hr8/11/blueline-28-en-portrait/artifacts/ ./results
+        run: gsutil cp -r gs://test-lab-9d3i0124xy3ac-jwzdcv41h0hr8/11/blueline-28-en-portrait/artifacts/ ./results/
 
       - name: upload video & Screenshots to artifacts 
         uses: actions/upload-artifact@v1
