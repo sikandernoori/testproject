@@ -27,7 +27,7 @@ jobs:
       #   run: gcloud firebase test android run --type robo --app build/app/outputs/flutter-apk/app-release.apk --results-dir=${{ github.run_number }} --timeout=300s
 
       - name: create result directory
-        run: mkdir results
+        run: mkdir ./results
 
       - name: Download video
         run: gsutil cp gs://test-lab-9d3i0124xy3ac-jwzdcv41h0hr8/11/blueline-28-en-portrait/video.mp4 ./results
